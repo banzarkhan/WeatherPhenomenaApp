@@ -41,6 +41,10 @@ class WeatherCell: UICollectionViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.clear.cgColor
     }
     
     required init?(coder: NSCoder) {
@@ -50,5 +54,12 @@ class WeatherCell: UICollectionViewCell {
     func configure(with title: String, iconName: String) {
         titleLabel.text = title
         iconImageView.image = UIImage(systemName: iconName)
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            contentView.backgroundColor = isSelected ? .lightGray : .white
+            contentView.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.clear.cgColor
+        }
     }
 }
