@@ -62,10 +62,8 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
         }
         
         private func updateWeatherDetailView(for index: Int) {
-            // Remove existing subviews
             weatherDetailView.subviews.forEach { $0.removeFromSuperview() }
             
-            // Create new subview based on the selected weather type
             let weatherType = weatherTypes[index]
             let weatherIconName = weatherIcons[index]
             
@@ -94,7 +92,7 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
                 titleLabel.trailingAnchor.constraint(equalTo: weatherDetailView.trailingAnchor, constant: -20)
             ])
             
-            UIView.transition(with: weatherDetailView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            UIView.transition(with: weatherDetailView, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 self.weatherDetailView.addSubview(iconImageView)
                 self.weatherDetailView.addSubview(titleLabel)
             })
