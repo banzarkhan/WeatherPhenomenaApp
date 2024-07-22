@@ -12,7 +12,7 @@
 
 1. **Клонируйте репозиторий**:
     ```bash
-    git clone [<URL репозитория>](https://github.com/banzarkhan/WeatherPhenomenaApp)
+    git clone https://github.com/banzarkhan/WeatherPhenomenaApp
     ```
 
 2. **Откройте проект в Xcode**:
