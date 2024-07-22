@@ -15,6 +15,8 @@
 		546307732C4A5CEB00FBCE2E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 546307722C4A5CEB00FBCE2E /* Base */; };
 		5463077D2C4BFC0100FBCE2E /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463077C2C4BFC0100FBCE2E /* WeatherViewController.swift */; };
 		5463077F2C4BFD5200FBCE2E /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5463077E2C4BFD5200FBCE2E /* WeatherCell.swift */; };
+		546307812C4EA2BA00FBCE2E /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546307802C4EA2BA00FBCE2E /* Weather.swift */; };
+		546307842C4EB0EA00FBCE2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 546307822C4EB0EA00FBCE2E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,9 @@
 		546307742C4A5CEB00FBCE2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5463077C2C4BFC0100FBCE2E /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		5463077E2C4BFD5200FBCE2E /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		546307802C4EA2BA00FBCE2E /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		546307832C4EB0EA00FBCE2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		546307882C4EB19000FBCE2E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +65,12 @@
 		546307652C4A5CE900FBCE2E /* WeatherPhenomenaApp */ = {
 			isa = PBXGroup;
 			children = (
+				546307822C4EB0EA00FBCE2E /* Localizable.strings */,
 				546307662C4A5CE900FBCE2E /* AppDelegate.swift */,
 				546307682C4A5CE900FBCE2E /* SceneDelegate.swift */,
 				5463076A2C4A5CE900FBCE2E /* ViewController.swift */,
 				5463077C2C4BFC0100FBCE2E /* WeatherViewController.swift */,
+				546307802C4EA2BA00FBCE2E /* Weather.swift */,
 				5463077E2C4BFD5200FBCE2E /* WeatherCell.swift */,
 				5463076C2C4A5CE900FBCE2E /* Main.storyboard */,
 				5463076F2C4A5CEB00FBCE2E /* Assets.xcassets */,
@@ -115,6 +122,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 5463075A2C4A5CE900FBCE2E;
 			productRefGroup = 546307642C4A5CE900FBCE2E /* Products */;
@@ -132,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				546307702C4A5CEB00FBCE2E /* Assets.xcassets in Resources */,
+				546307842C4EB0EA00FBCE2E /* Localizable.strings in Resources */,
 				546307732C4A5CEB00FBCE2E /* Base in Resources */,
 				5463076E2C4A5CE900FBCE2E /* Base in Resources */,
 			);
@@ -148,6 +157,7 @@
 				5463077D2C4BFC0100FBCE2E /* WeatherViewController.swift in Sources */,
 				5463077F2C4BFD5200FBCE2E /* WeatherCell.swift in Sources */,
 				546307672C4A5CE900FBCE2E /* AppDelegate.swift in Sources */,
+				546307812C4EA2BA00FBCE2E /* Weather.swift in Sources */,
 				546307692C4A5CE900FBCE2E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +181,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		546307822C4EB0EA00FBCE2E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				546307832C4EB0EA00FBCE2E /* en */,
+				546307882C4EB19000FBCE2E /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -179,6 +198,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -242,6 +262,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

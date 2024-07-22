@@ -58,8 +58,7 @@ class WeatherCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            contentView.backgroundColor = isSelected ? .lightGray : .white
-            contentView.layer.borderColor = isSelected ? UIColor.blue.cgColor : UIColor.clear.cgColor
+            contentView.layer.borderColor = isSelected ? UIColor.black.cgColor : UIColor.clear.cgColor
         }
     }
 }

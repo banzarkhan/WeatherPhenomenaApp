@@ -9,11 +9,9 @@ import UIKit
 
 class WeatherViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private let weatherTypes = ["Ясно", "Дождь", "Гроза", "Туман"]
-    private let weatherIcons = ["sun.max.fill", "cloud.rain.fill", "cloud.bolt.rain.fill", "cloud.fog.fill"]
-    
     private var collectionView: UICollectionView!
     private var weatherDetailView: UIView!
+    private var selectedWeatherIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +19,17 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
         view.backgroundColor = .white
         setupCollectionView()
         setupWeatherDetailView()
-        //            updateWeatherDetailView(for: 0)
         
-        let randomIndex = Int.random(in: 0..<weatherTypes.count)
-        selectWeather(at: randomIndex)
+        selectedWeatherIndex = Int.random(in: 0..<Weather.weatherTypes.count)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            
+            if let index = selectedWeatherIndex {
+                selectWeather(at: index)
+            }
+        }
     
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -68,15 +72,20 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
         let indexPath = IndexPath(item: index, section: 0)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         updateWeatherDetailView(for: index)
+        scrollToWeather(at: index)
     }
+    
+    private func scrollToWeather(at index: Int) {
+            let indexPath = IndexPath(item: index, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     
     private func updateWeatherDetailView(for index: Int) {
         weatherDetailView.subviews.forEach { $0.removeFromSuperview() }
         
-        let weatherType = weatherTypes[index]
-        let weatherIconName = weatherIcons[index]
+        let weather = Weather.weatherTypes[index]
         
-        let iconImageView = UIImageView(image: UIImage(systemName: weatherIconName))
+        let iconImageView = UIImageView(image: UIImage(systemName: weather.icon))
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.tintColor = .black
@@ -85,7 +94,7 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        titleLabel.text = weatherType
+        titleLabel.text = weather.type
         
         weatherDetailView.addSubview(iconImageView)
         weatherDetailView.addSubview(titleLabel)
@@ -108,12 +117,13 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return weatherTypes.count
+        return Weather.weatherTypes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCell.identifier, for: indexPath) as! WeatherCell
-        cell.configure(with: weatherTypes[indexPath.item], iconName: weatherIcons[indexPath.item])
+        let weather = Weather.weatherTypes[indexPath.item]
+        cell.configure(with: weather.type, iconName: weather.icon)
         return cell
     }
     
@@ -123,6 +133,7 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         updateWeatherDetailView(for: indexPath.item)
+        scrollToWeather(at: indexPath.item)
     }
     
 }
