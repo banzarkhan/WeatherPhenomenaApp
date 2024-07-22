@@ -5,11 +5,10 @@
   Created by Ariuna Banzarkhanova on 22/07/24.
   
 */
-"Clear" = "Ясно";
-"Rain" = "Дождь";
-"Thunderstorm" = "Гроза";
-"Fog" = "Туман";
-"Snow" = "Снег";
-"Cloudy" = "Облачно";
-"Wind" = "Ветер";
+"Clear" = "Ясно"; // +
+"Rain" = "Дождь"; // +
+"Thunderstorm" = "Гроза"; // +
+"Snow" = "Снег"; // +
+"Cloudy" = "Облачно"; // +
+"Wind" = "Ветер"; // +
 

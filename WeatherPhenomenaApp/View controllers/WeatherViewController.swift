@@ -16,7 +16,6 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
         setupCollectionView()
         setupWeatherDetailView()
         
@@ -77,34 +76,28 @@ class WeatherViewController: UIViewController {
         
         let weather = Weather.weatherTypes[index]
         
-        let iconImageView = UIImageView(image: UIImage(systemName: weather.icon))
+        let iconImageView = UIImageView(image: UIImage(named: weather.imageName))
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.tintColor = .black
         
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        titleLabel.text = weather.type
+        iconImageView.layer.shadowColor = UIColor.black.cgColor
+        iconImageView.layer.shadowOffset = CGSize(width: 2, height: 2)
+        iconImageView.layer.shadowOpacity = 0.7
+        iconImageView.layer.shadowRadius = 4.0
         
         weatherDetailView.addSubview(iconImageView)
-        weatherDetailView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
             iconImageView.centerXAnchor.constraint(equalTo: weatherDetailView.centerXAnchor),
             iconImageView.centerYAnchor.constraint(equalTo: weatherDetailView.centerYAnchor, constant: -50),
-            iconImageView.widthAnchor.constraint(equalToConstant: 100),
-            iconImageView.heightAnchor.constraint(equalToConstant: 100),
-            
-            titleLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: weatherDetailView.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: weatherDetailView.trailingAnchor, constant: -20)
+            iconImageView.widthAnchor.constraint(equalToConstant: 180),
+            iconImageView.heightAnchor.constraint(equalToConstant: 180),
         ])
         
         UIView.transition(with: weatherDetailView, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.weatherDetailView.addSubview(iconImageView)
-            self.weatherDetailView.addSubview(titleLabel)
+//            self.weatherDetailView.addSubview(titleLabel)
         })
     }
     
