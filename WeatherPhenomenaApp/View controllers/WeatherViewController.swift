@@ -7,9 +7,9 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class WeatherViewController: UIViewController {
     
-    private var collectionView: UICollectionView!
+    private var collectionView: WeatherCollectionView!
     private var weatherDetailView: UIView!
     private var selectedWeatherIndex: Int?
     
@@ -32,18 +32,11 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     
     private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(WeatherCell.self, forCellWithReuseIdentifier: WeatherCell.identifier)
+        collectionView = WeatherCollectionView()
+        collectionView.didSelectWeather = { [weak self] index in
+            self?.updateWeatherDetailView(for: index)
+            self?.scrollToWeather(at: index)
+        }
         
         view.addSubview(collectionView)
         
@@ -76,8 +69,7 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     private func scrollToWeather(at index: Int) {
-            let indexPath = IndexPath(item: index, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        collectionView.scrollToWeather(at: index)
         }
     
     private func updateWeatherDetailView(for index: Int) {
@@ -114,26 +106,6 @@ class WeatherViewController: UIViewController, UICollectionViewDataSource, UICol
             self.weatherDetailView.addSubview(iconImageView)
             self.weatherDetailView.addSubview(titleLabel)
         })
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Weather.weatherTypes.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherCell.identifier, for: indexPath) as! WeatherCell
-        let weather = Weather.weatherTypes[indexPath.item]
-        cell.configure(with: weather.type, iconName: weather.icon)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 80)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        updateWeatherDetailView(for: indexPath.item)
-        scrollToWeather(at: indexPath.item)
     }
     
 }

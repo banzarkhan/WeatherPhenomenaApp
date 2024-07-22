@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherCell: UICollectionViewCell {
+class WeatherCellView: UICollectionViewCell {
     static let identifier = "WeatherCell"
     
     private let iconImageView: UIImageView = {
